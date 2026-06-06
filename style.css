@@ -387,276 +387,430 @@ button.submit-btn:hover {
 }
 
 
-.family-section {
-    display: grid;
-    /* Split into three precise parts: Column 1 | Center Column | Column 2 */
-    grid-template-columns: 2fr 1fr 2fr;
-    max-width: 800px;
-    margin: 100px auto; /* Spacious margins */
-    padding: 0 40px;
-    align-items: center; /* Vertically center all content */
-    text-align: center;
-}
-
-/* Base styles for both text columns */
-.family-column {
-    padding: 20px;
-}
-
-/* Titles: "The Bride" / "The Groom" */
-.section-title {
-    font-size: 1.2rem;
-    text-transform: uppercase;
-    letter-spacing: 3px;
-    margin-bottom: 20px;
-    font-weight: 300;
-}
-
-
-.name-script {
-    font-family: 'Dancing Script', cursive; /* Calligraphic Script Font */
-    font-size: 3rem;
-    color: var(--luxury-gold);
-    
-    margin-bottom: 30px;
-    letter-spacing: 1px;
-}
-
-/* Family Hierarchy text */
-.family-hierarchy {
-    font-size: 1rem;
-    line-height: 1.8;
-    letter-spacing: 1.5px;
-    color: #555;
-    font-weight: 300;
-}
-
+/*Family*/
 /* ==========================================
-   CENTRAL COMPONENTS & ANIMATION
+   FAMILY SECTION CONTAINER SETTING
    ========================================== */
+.family-section {
+    position: relative;
+    width: 100%;
+    max-width: 850px;
+    margin: 40px auto;
+    padding: 60px 24px;
+    box-sizing: border-box;
+    background-color: transparent;
+    overflow: hidden; /* Encapsulates the animation within this block area */
+}
+
+/* Base horizontal grid controller for desktop displays */
+.family-grid-row {
+    position: relative;
+    z-index: 2; /* Sits perfectly above the background animation layer */
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    gap: 10px;
+}
+
+/* Strict desktop width assignments */
+.family-column {
+    width: 40%;
+    box-sizing: border-box;
+    transition: all 0.3s ease;
+}
+
+.bride-col {
+    text-align: right;
+}
+
+.groom-col {
+    text-align: left;
+}
+
+/* Center Column Rings Core Wrapper */
 .rings-center-component {
+    width: 20%;
     display: flex;
     justify-content: center;
     align-items: center;
-    position: relative;
-    /* Adding subtle vertical dividers using CSS pseudo-elements */
+    flex-shrink: 0;
 }
 
-/* Creating elegant vertical divider lines flanking the rings */
-.rings-center-component::before,
-.rings-center-component::after {
-    content: '';
-    position: absolute;
-    top: 10%;
-    bottom: 10%;
-    width: 1px;
-    background-color: rgba(197, 168, 128, 0.3); /* Subtle gold tone */
+/* Prevents layout shifts or resizing bugs on mobile screen widths */
+.rings-bounding-box {
+    width: 80px;
+    height: 80px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-.rings-center-component::before { left: -10px; }
-.rings-center-component::after { right: -10px; }
-
-/* Styling for the actual picture graphic */
 .rings-picture {
-    width: 120px; /* Adjust graphic size as needed */
-    height: 120px;
+    width: 100%;
+    height: auto;
+    max-width: 75px;
     display: block;
 }
 
-/* Defined Keyframe Animation for Rotation */
-.spin {
-    animation: rotation_subtle 10s infinite linear;
+/* Smooth Infinite Rotation Engine */
+.spin-animation {
+    animation: luxuryRotate 25s linear infinite;
 }
 
-@keyframes rotation_subtle {
+@keyframes luxuryRotate {
     from { transform: rotate(0deg); }
     to { transform: rotate(360deg); }
 }
 
 /* ==========================================
-   MOBILE RESPONSIVENESS
+   TYPOGRAPHY SPECIFICATIONS
    ========================================== */
-@media (max-width: 800px) {
-    .family-section {
-        /* On smaller screens, stack them vertically (1fr = single column) */
-        grid-template-columns: 1fr;
-        gap: 60px; /* Space between components */
-        margin: 50px auto;
+.section-title {
+    font-family: 'Cinzel', serif;
+    font-size: 1.15rem;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: #0A192F; /* Midnight dark luxury contrast tone */
+    margin: 0 0 8px 0;
+}
+
+.name-script {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 2rem;
+    font-weight: 400;
+    margin: 0 0 10px 0;
+    color: var(--luxury-gold, #C5A880);
+    line-height: 1.2;
+}
+
+.family-hierarchy {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.8rem;
+    line-height: 1.6;
+    color: #555555;
+    margin: 0;
+    font-weight: 400;
+}
+
+/* ==========================================
+   BACKGROUND FLOATING HEART SYSTEM
+   ========================================== */
+.hearts-bg-layer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    pointer-events: none; /* Allows user taps to pass straight through */
+}
+
+.floating-heart {
+    position: absolute;
+    bottom: -30px;
+    color: rgba(226, 143, 28, 0.16); /* Warm, subtle gold opacity overlay shadow */
+    user-select: none;
+    animation: riseAndDrift 14s linear infinite;
+}
+
+/* Staggered sizing, horizontal positioning, and animation timings */
+.heart-size-1 { left: 12%; font-size: 1.3rem; animation-delay: 0s; animation-duration: 12s; }
+.heart-size-2 { left: 32%; font-size: 0.85rem; animation-delay: 3s; animation-duration: 16s; }
+.heart-size-3 { left: 50%; font-size: 1.5rem; animation-delay: 1.5s; animation-duration: 14s; }
+.heart-size-4 { left: 72%; font-size: 1.0rem; animation-delay: 5s; animation-duration: 11s; }
+.heart-size-5 { left: 88%; font-size: 0.75rem; animation-delay: 7.5s; animation-duration: 18s; }
+
+@keyframes riseAndDrift {
+    0% {
+        transform: translateY(0) translateX(0) rotate(0deg);
+        opacity: 0;
+    }
+    15% {
+        opacity: 1;
+    }
+    85% {
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(-125vh) translateX(40px) rotate(35deg);
+        opacity: 0;
+    }
+}
+
+/* ==========================================
+   MOBILE SCREEN CONSTRAINTS & RE-ORDERING
+   ========================================== */
+@media (max-width: 640px) {
+    .family-grid-row {
+        flex-direction: column !important; /* Stack items vertically on mobile viewports */
+        gap: 30px !important;
     }
 
-    /* Moving the divider lines for vertical placement */
-    .rings-center-component::before,
-    .rings-center-component::after {
-        top: -30px;
-        bottom: auto;
-        width: 60%;
-        height: 1px;
-        left: 20%;
+    .family-column {
+        width: 100% !important;
+        text-align: center !important; /* Set text alignment to center for balance on mobile layout screens */
+        padding: 0 15px;
     }
-    
-    .rings-center-component::after { top: auto; bottom: -30px; }
+
+    .rings-center-component {
+        width: 100% !important;
+        margin: 5px 0;
+    }
+
+    /* 💡 Structural Re-ordering Grid Framework Rules */
+    .bride-col {
+        order: 1 !important; /* Step 1: The Bride content sits on top */
+    }
+
+    .rings-center-component {
+        order: 2 !important; /* Step 2: The Ring element renders safely in the middle position */
+    }
+
+    .groom-col {
+        order: 3 !important; /* Step 3: The Groom details finish at the bottom */
+    }
+
+    /* Clean typography enhancement for phone viewports */
+    .name-script {
+        font-size: 2.15rem;
+    }
+    .section-title {
+        font-size: 1.1rem;
+    }
 }
 
 
 
 
-/* ==========================================
-   TIMELINE LAYOUT CONFIGURATION
-   ========================================== */
+
 :root {
     --text-dark: #000000;
     --line-gray: #4A4A4A;
-    /* Sets the background image with a soft white fog overlay so the text stays perfectly readable */
-    --bg-overlay: linear-gradient(rgba(255, 255, 255, 0.88), rgba(255, 255, 255, 0.88)), url('chapel-bg.jpg');
+    --luxury-gold: #C5A880;
+    --muted-gray: #777777;
+    --bg-overlay: linear-gradient(rgba(255, 255, 255, 0.88), rgba(255, 255, 255, 0.88)), url('back.jpg');
 }
 
 body {
     margin: 0;
     padding: 0;
     font-family: 'Montserrat', sans-serif;
-    background-color: #FDFBF7;
     color: var(--text-dark);
+    overflow-x: hidden; /* Stops horizontal page wobble on mobile */
 }
 
 .timeline-page {
     width: 100%;
-    max-width: 480px; /* Keeps the clean mobile app layout structure */
-    margin: 0 auto;
-    padding: 60px 0;
-    box-sizing: border-box;
-    
-    /* Elegant structural rendering properties */
-    background: var(--bg-overlay) no-repeat center center;
-    background-size: cover;
-    background-attachment: scroll;
-    
     min-height: 100vh;
+    background: var(--bg-overlay);
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    padding: 60px 10px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 /* ==========================================
-   HEADER DESIGN
+   HEADINGS
    ========================================== */
 .timeline-header {
     text-align: center;
-    margin-bottom: 50px;
+    margin-bottom: 20px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
-.timeline-custom-icon {
-    width: 45px;        /* Fixes the width so all icons match seamlessly */
-    height: 45px;       /* Fixes the height */
-    object-fit: contain;/* Ensures the images don't get squished or distorted */
-    margin-bottom: 5px;
-    display: inline-block;
+.timeline-top-badge {
+    text-transform: uppercase;
+    font-size: 0.7rem;
+    letter-spacing: 4px;
+    color: var(--luxury-gold);
+    font-weight: 500;
+    display: block;
+    margin-bottom: 8px;
 }
 
-.script-title {
-    font-family: 'Playfair Display', serif;
-    font-style: italic;
-    font-weight: 400;
-    font-size: 3.5rem;
-    margin: 0;
+.section-main-heading {
+    font-family: 'Cinzel', serif;
+    font-size: 2.2rem;
+    color: var(--primary-navy);
+    margin: 0 0 5px 0;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    text-align: center;
+    width: 100%;
 }
 
 .heart-divider {
     font-size: 0.9rem;
-    margin-top: -5px;
-    letter-spacing: 5px;
+    color: var(--luxury-gold);
+    margin: 5px 0;
 }
 
-.heart-divider::before,
-.heart-divider::after {
-    content: ' ————— ';
-    letter-spacing: -2px;
-    opacity: 0.5;
-}
-
-/* ==========================================
-   ZIGZAG TIMELINE ELEMENTS GRID LOGIC
-   ========================================== */
-.timeline-container {
-    display: flex;
-    flex-direction: column;
-    gap: 45px;
-    position: relative;
-    padding: 0 10px;
-}
-
-.timeline-item {
-    display: flex;
-    flex-direction: column;
-    width: 60%; 
-    position: relative;
-}
-
-/* Left Aligned Items Rules */
-.left-item {
-    align-self: flex-start;
+.section-subtitle {
+    font-size: 1.1rem;
+    margin-bottom: 0px;
     text-align: center;
-    padding-left: 25px;
+    width: 100%;
 }
 
-/* Right Aligned Items Rules */
-.right-item {
-    align-self: flex-end;
-    text-align: center;
-    padding-right: 25px;
-}
-
-/* ==========================================
-   ICONS & HORIZONTAL TIMELINE BARS
-   ========================================== */
-.event-icon {
-    font-size: 2rem;
-    margin-bottom: 8px;
-    color: #333;
-}
-
-/* The clean, thin dividing line matching the sample layout image */
-.horizontal-line {
-    width: 110%; 
-    height: 1px;
-    background-color: var(--line-gray);
-    margin: 5px 0 12px 0;
-}
-
-/* Position adjustment for right lines to clip properly */
-.right-item .horizontal-line {
-    margin-left: -10%;
-}
-
-/* ==========================================
-   TYPOGRAPHY DETAILS
-   ========================================== */
-.event-details {
-    padding: 0 10px;
-}
-
-.time-stamp {
+.italic-serif {
     font-family: 'Playfair Display', serif;
-    font-weight: 600;
-    font-size: 1.4rem;
-    margin: 0 0 5px 0;
-    letter-spacing: 1px;
+    font-style: italic;
+    color: var(--luxury-gold);
 }
 
-.event-name {
-    font-size: 0.78rem;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    margin: 0;
+/* ==========================================
+   LOCKED RIGID TIMELINE GRID
+   ========================================== */
+.timeline-center-wrapper {
+    position: relative;
+    width: 100%;
+    max-width: 480px; /* Locks page width to a clean phone container aspect size */
+    margin: 0 auto;
+    padding: 10px 0;
+}
+
+/* Center spine structural wire line */
+.vertical-center-spine {
+    position: absolute;
+    left: 50%;
+    top: 0;
+    bottom: 0;
+    width: 1px;
+    background-color: rgba(74, 74, 74, 0.2);
+    transform: translateX(-50%);
+    z-index: 1;
+}
+
+/* Rigid horizontal layout row container */
+.timeline-moment-row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    position: relative;
+    z-index: 2;
+    margin-bottom: 45px;
+}
+
+/* ==========================================
+   STRICT WIDTH COLUMN GRID MAPS
+   ========================================== */
+.col-time {
+    width: 40%;
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 1.15rem;
+    color: var(--luxury-gold);
+    box-sizing: border-box;
+}
+
+.col-node {
+    width: 20%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+}
+
+.col-details {
+    width: 40%;
+    box-sizing: border-box;
+}
+
+/* ==========================================
+   ALIGNMENT ASSIGNMENT CONTROLS
+   ========================================== */
+
+/* Rows where descriptive text lands on the right side */
+.right-side {
+    text-align: left;
+}
+.right-side .col-time {
+    text-align: right;
+    padding-right: 12px;
+}
+.right-side .col-details {
+    padding-left: 12px;
+}
+
+/* Rows where descriptive text lands on the left side */
+.left-side {
+    text-align: right;
+}
+.left-side .col-time {
+    text-align: left;
+    padding-left: 12px;
+}
+.left-side .col-details {
+    padding-right: 12px;
+}
+
+/* ==========================================
+   INNER COMPONENTS GRAPHICS
+   ========================================== */
+.node-icon {
+    width: 40px;
+    height: 40px;
+    background-color: #FFFFFF;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.05);
+    color: var(--luxury-gold);
+    font-size: 0.9rem;
+    border: 1px solid rgba(197, 168, 128, 0.12);
+    flex-shrink: 0; /* Prevents icons from turning into ovals on narrow screens */
+}
+
+.moment-title-script {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 1.15rem;
     font-weight: 400;
+    margin: 0 0 3px 0;
+    color: var(--text-dark);
+    line-height: 1.2;
 }
-.timeline-custom-icon {
-    width: 45px;        /* Fixes the width so all icons match seamlessly */
-    height: 45px;       /* Fixes the height */
-    object-fit: contain;/* Ensures the images don't get squished or distorted */
-    margin-bottom: 5px;
-    display: inline-block;
+
+.moment-description {
+    font-size: 0.75rem;
+    line-height: 1.4;
+    color: var(--muted-gray);
+    margin: 0;
 }
+
+/* ==========================================
+   PREMIUM FADE ANIMATION ENGINES
+   ========================================== */
+.animate-on-scroll {
+    opacity: 0;
+    transform: translateY(25px);
+    transition: opacity 1s cubic-bezier(0.22, 1, 0.36, 1), 
+                transform 1s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.animate-on-scroll.elements-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+
+			
 
 
 /* ==========================================
-   LUXURY LAYOUT STYLING CONSTANTS
+   LUXURY LAYOUT STYLING CONSTANTS venue
    ========================================== */
 :root {
     --primary-navy: #0A192F;
@@ -891,5 +1045,322 @@ body {
     }
     .venue-main-title {
         font-size: 2.5rem;
+    }
+}
+
+
+/*RSVS*/
+/* ==========================================
+   STYLE PALETTE SYSTEM
+   ========================================== */
+:root {
+    --text-dark: #2B2A28;
+    --luxury-gold: #C5A880;
+    --soft-gold-bg: #FAF5EF;
+    --field-label-gray: #7A7975;
+    --border-light-gray: #EFEFEF;
+    --placeholder-color: #C2C1BD;
+    --button-charcoal: #262423;
+    /* Soft white overlay masking your background image asset */
+    --bg-overlay: linear-gradient(rgba(255, 255, 255, 0.90), rgba(255, 255, 255, 0.90)), url('back.jpg');
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Montserrat', sans-serif;
+    color: var(--text-dark);
+    background-color: #FAF8F5;
+    overflow-x: hidden;
+}
+
+.rsvp-page-backdrop {
+    width: 100%;
+    min-height: 100vh;
+    background: var(--bg-overlay);
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 40px 16px;
+    box-sizing: border-box;
+}
+
+/* ==========================================
+   CARD CONTAINER DESIGN MAPPING
+   ========================================== */
+.rsvp-outer-card {
+    position: relative;
+    background-color: #FFFFFF;
+    border-radius: 40px;
+    width: 100%;
+    max-width: 520px; /* Perfectly structured for all smartphone viewport wrappers */
+    padding: 60px 35px 45px 35px;
+    box-sizing: border-box;
+    box-shadow: 0 25px 60px rgba(0, 0, 0, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.9);
+    text-align: center;
+}
+
+/* Floating Audio Toggle Replica Asset Box */
+.music-floating-toggle {
+    position: absolute;
+    top: 25px;
+    right: 25px;
+    width: 44px;
+    height: 44px;
+    background-color: #FFFFFF;
+    border: 1px solid rgba(0,0,0,0.04);
+    border-radius: 50%;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+.sparkle-decorative {
+    position: absolute;
+    top: 35px;
+    left: 35px;
+    color: #E2D3C1;
+    font-size: 2rem;
+    font-weight: 300;
+}
+
+/* ==========================================
+   HEADER SECTION TYPOGRAPHY
+   ========================================== */
+.rsvp-header-block {
+    margin-bottom: 35px;
+}
+
+.badge-kindly {
+    font-family: 'Montserrat', sans-serif;
+    text-transform: uppercase;
+    font-size: 0.75rem;
+    letter-spacing: 4px;
+    color: var(--luxury-gold);
+    font-weight: 600;
+    display: block;
+    margin-bottom: 12px;
+}
+
+.main-title-script {
+    font-family: 'Playfair Display', serif;
+    font-weight: 400;
+    font-size: 3.4rem;
+    margin: 0 0 20px 0;
+    letter-spacing: -1px;
+    line-height: 1.1;
+}
+
+.accent-title-gold {
+    font-family: 'Pinyon Script', cursive;
+    color: var(--luxury-gold);
+    font-size: 4.2rem;
+    display: inline-block;
+    margin: 0 -5px;
+}
+
+.rsvp-intro-paragraph {
+    font-size: 0.88rem;
+    line-height: 1.6;
+    color: #7A7975;
+    max-width: 420px;
+    margin: 0 auto;
+    font-weight: 400;
+}
+
+/* ==========================================
+   CONTACT PLATE CARDS
+   ========================================== */
+.contact-info-plate {
+    background-color: var(--soft-gold-bg);
+    border-radius: 18px;
+    padding: 22px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 30px;
+    border: 1px solid rgba(197, 168, 128, 0.1);
+}
+
+.plate-title {
+    font-size: 0.78rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--field-label-gray);
+    margin-bottom: 6px;
+}
+
+.contact-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.15rem;
+    color: var(--text-dark);
+    margin-bottom: 4px;
+}
+
+.contact-phone-link {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--luxury-gold);
+    text-decoration: none;
+    letter-spacing: 0.5px;
+}
+
+.sub-divider-line {
+    width: 40px;
+    height: 1px;
+    background-color: #E0DBD5;
+    margin: 0 auto 35px auto;
+}
+
+/* ==========================================
+   FORM WRAPPER INPUT CONTAINERS
+   ========================================== */
+.white-form-container-box {
+    background-color: #FAFAF9;
+    border: 1px solid var(--border-light-gray);
+    border-radius: 30px;
+    padding: 35px 25px;
+    margin-bottom: 30px;
+    text-align: left;
+    box-shadow: inset 0 2px 8px rgba(0,0,0,0.005);
+}
+
+.form-field-group {
+    margin-bottom: 25px;
+}
+.form-field-group:last-child {
+    margin-bottom: 0;
+}
+
+.field-label-text {
+    display: block;
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--field-label-gray);
+    margin-bottom: 10px;
+    padding-left: 5px;
+}
+
+/* INPUT TEXT BOX DESIGN */
+.text-input-field,
+.select-dropdown-input,
+.textarea-input-field {
+    width: 100%;
+    background-color: #FFFFFF;
+    border: 1px solid #F0EFEA;
+    border-radius: 20px;
+    padding: 16px 20px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.9rem;
+    color: var(--text-dark);
+    box-sizing: border-box;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.01);
+    transition: all 0.3s ease;
+    outline: none;
+}
+
+.text-input-field::placeholder,
+.textarea-input-field::placeholder {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    color: var(--placeholder-color);
+    font-size: 0.95rem;
+}
+
+.text-input-field:focus,
+.select-dropdown-input:focus,
+.textarea-input-field:focus {
+    border-color: var(--luxury-gold);
+    box-shadow: 0 4px 18px rgba(197, 168, 128, 0.08);
+}
+
+/* DROPDOWN MENU LOGIC MAPS */
+.dropdown-wrapper {
+    position: relative;
+    width: 100%;
+}
+
+.select-dropdown-input {
+    appearance: none;
+    -webkit-appearance: none;
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    color: #55534E;
+    padding-right: 45px;
+    cursor: pointer;
+}
+
+.dropdown-heart-icon {
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--luxury-gold);
+    font-size: 0.9rem;
+    pointer-events: none;
+}
+
+/* TEXTAREA FIELD DIMENSIONS */
+.textarea-input-field {
+    min-height: 100px;
+    resize: none;
+    border-radius: 22px;
+    line-height: 1.5;
+}
+
+/* ==========================================
+   CONFIRM ATTENDANCE ACTION SUBMIT BUTTON
+   ========================================== */
+.confirm-attendance-btn {
+    width: 100%;
+    background-color: var(--button-charcoal);
+    color: #FFFFFF;
+    border: none;
+    border-radius: 25px;
+    padding: 18px 20px;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 0.78rem;
+    letter-spacing: 3px;
+    cursor: pointer;
+    box-shadow: 0 10px 30px rgba(38, 36, 35, 0.15);
+    transition: all 0.3s cubic-bezier(0.215, 0.61, 0.355, 1);
+}
+
+.confirm-attendance-btn:hover {
+    background-color: var(--luxury-gold);
+    box-shadow: 0 10px 30px rgba(197, 168, 128, 0.25);
+    transform: translateY(-1px);
+}
+
+.confirm-attendance-btn:active {
+    transform: translateY(1px);
+}
+
+/* Mobile Screen Padding Adjustments */
+@media (max-width: 400px) {
+    .rsvp-outer-card {
+        padding: 50px 20px 35px 20px;
+    }
+    .white-form-container-box {
+        padding: 25px 15px;
+    }
+    .main-title-script {
+        font-size: 2.8rem;
+    }
+    .accent-title-gold {
+        font-size: 3.5rem;
     }
 }
