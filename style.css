@@ -948,7 +948,7 @@ body {
     background-color: var(--soft-white);
     border-radius: 40px;
     width: 100%;
-    max-width: 500px; /* Kept tight to look premium and neat on phones */
+    max-width: 700px; /* Kept tight to look premium and neat on phones */
     padding: 50px 40px;
     box-sizing: border-box;
     text-align: left;
