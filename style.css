@@ -467,23 +467,76 @@ button.submit-btn:hover {
 /* ==========================================
    TYPOGRAPHY SPECIFICATIONS
    ========================================== */
-.section-title {
+/*.section-title {
     font-family: 'Cinzel', serif;
     font-size: 1.15rem;
     letter-spacing: 3px;
     text-transform: uppercase;
-    color: #0A192F; /* Midnight dark luxury contrast tone */
+    color: #0A192F; 
     margin: 0 0 8px 0;
+}*/
+
+/* Wrapper to enforce identical alignment setups */
+.title-row-wrapper {
+    display: flex;
+    width: 100%;
+    margin-bottom: 12px;
 }
 
+/* Bride alignment snaps to the right, Groom snaps to the left */
+.bride-col .title-row-wrapper {
+    justify-content: flex-end;
+}
+.groom-col .title-row-wrapper {
+    justify-content: flex-start;
+}
+
+.section-title {
+    font-family: 'Cinzel', serif;
+    font-size: 1.15rem;
+    font-weight: 500;
+    letter-spacing: 5px; /* Extended print tracking */
+    text-transform: uppercase;
+    color: #1C1C1E; /* Deep luxury navy contrast tone */
+    margin: 0;
+    padding: 0;
+    
+    /* Strict layout row config */
+    display: inline-flex;
+    align-items: center;
+    white-space: nowrap;
+}
+
+/* 🚀 LEFT ACCENT LINE: Generates a real, solid horizontal wire line */
+.section-title::before {
+    content: '';
+    display: inline-block;
+    width: 50px; /* Precise layout width of your left-side line */
+    height: 1px;
+    background-color: #C5A880; /* Elegant solid gold fill */
+    margin-right: 18px; /* Clean air gap before the words begin */
+}
+
+/* 🚀 RIGHT ACCENT DIAMOND: Generates the geometric gold gemstone */
+.section-title::after {
+    content: '♦';
+    display: inline-block;
+    font-size: 0.6rem;
+    color: #C5A880; /* Matches luxury theme gold color palette */
+    margin-left: 14px; /* Clean air gap after the words end */
+    transform: scaleY(1.1); /* Sharpens structural diamond points */
+}
+
+
 .name-script {
-    font-family: 'Playfair Display', serif;
-    font-style: italic;
+    font-family: 'Great Vibes', cursive;;
+    font-style: normal;
     font-size: 2rem;
     font-weight: 400;
     margin: 0 0 10px 0;
     color: var(--luxury-gold, #C5A880);
     line-height: 1.2;
+    letter-spacing: 1px;
 }
 
 .family-hierarchy {
