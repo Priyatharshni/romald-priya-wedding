@@ -27,7 +27,7 @@ document.addEventListener("DOMContentLoaded", function () {
                         <span style="font-size:3.5rem; color:#C5A880; display:block; margin-bottom:10px;">♡</span>
                         <h3 style="font-family:'Playfair Display', serif; font-style:italic; font-size:1.8rem; margin:0 0 10px 0; color:#2B2A28;">Response Received</h3>
                         <p style="font-family:'Montserrat', sans-serif; font-size:0.85rem; color:#7A7975; line-height:1.6; max-width:280px; margin:0 auto;">
-                            Thank you! Your information has been safely saved into our attendance tracking sheet.
+                            Thank you! Your information has been safely saved.
                         </p>
                     </div>`;
             })
