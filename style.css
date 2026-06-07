@@ -522,6 +522,11 @@ button.submit-btn:hover {
 .heart-size-3 { left: 50%; font-size: 1.5rem; animation-delay: 1.5s; animation-duration: 14s; }
 .heart-size-4 { left: 72%; font-size: 1.0rem; animation-delay: 5s; animation-duration: 11s; }
 .heart-size-5 { left: 88%; font-size: 0.75rem; animation-delay: 7.5s; animation-duration: 18s; }
+.heart-size-6 { left: 12%; font-size: 1.3rem; animation-delay: 0s; animation-duration: 12s; }
+.heart-size-7 { left: 32%; font-size: 0.85rem; animation-delay: 3s; animation-duration: 16s; }
+.heart-size-8 { left: 50%; font-size: 1.5rem; animation-delay: 1.5s; animation-duration: 14s; }
+.heart-size-9 { left: 72%; font-size: 1.0rem; animation-delay: 5s; animation-duration: 11s; }
+.heart-size-10 { left: 88%; font-size: 0.75rem; animation-delay: 7.5s; animation-duration: 18s; }
 
 @keyframes riseAndDrift {
     0% {
@@ -587,18 +592,23 @@ button.submit-btn:hover {
 
 
 :root {
-    --text-dark: #000000;
-    --line-gray: #4A4A4A;
-    --luxury-gold: #C5A880;
-    --muted-gray: #777777;
-    --bg-overlay: linear-gradient(rgba(255, 255, 255, 0.88), rgba(255, 255, 255, 0.88)), url('back.jpg');
+    /* ==========================================
+       LUXURY COLOR PALETTE VARIATIONS
+       ========================================== */
+    --luxury-gold: #C5A880;        /* 💡 Main color for all Times, Event Names, and Accents */
+    --text-dark-charcoal: #1C1C1E; /* Deep luxury charcoal for main standalone headers */
+    --muted-editorial-gray: #555555; /* Soft readable tone for small details */
+    
+    --line-gray: rgba(197, 168, 128, 0.25); /* Tinted gold center spine line */
+    --bg-overlay: linear-gradient(rgba(255, 255, 255, 0.90), rgba(255, 255, 255, 0.90)), url('back.jpg');
 }
 
 body {
     margin: 0;
     padding: 0;
     font-family: 'Montserrat', sans-serif;
-    color: var(--text-dark);
+    color: var(--text-dark-charcoal);
+    background-color: #FAF8F5;
     overflow-x: hidden; /* Stops horizontal page wobble on mobile */
 }
 
@@ -609,7 +619,7 @@ body {
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
-    padding: 60px 10px;
+    padding: 80px 16px;
     box-sizing: border-box;
     display: flex;
     flex-direction: column;
@@ -617,7 +627,7 @@ body {
 }
 
 /* ==========================================
-   HEADINGS
+    HEADINGS
    ========================================== */
 .timeline-header {
     text-align: center;
@@ -630,38 +640,39 @@ body {
 
 .timeline-top-badge {
     text-transform: uppercase;
-    font-size: 0.7rem;
-    letter-spacing: 4px;
+    font-size: 0.72rem;
+    letter-spacing: 5px;
     color: var(--luxury-gold);
-    font-weight: 500;
+    font-weight: 600;
     display: block;
-    margin-bottom: 8px;
+    margin-bottom: 12px;
 }
 
 .section-main-heading {
     font-family: 'Cinzel', serif;
     font-size: 2.2rem;
-    color: var(--primary-navy);
+    color: var(--text-dark-charcoal); /* Keep main big block title anchored dark */
     margin: 0 0 5px 0;
-    letter-spacing: 3px;
+    letter-spacing: 4px;
     text-transform: uppercase;
     text-align: center;
     width: 100%;
 }
 
 .heart-divider {
-    font-size: 0.9rem;
+    font-size: 1rem;
     color: var(--luxury-gold);
-    margin: 5px 0;
+    margin: 8px 0;
 }
 
 .section-subtitle {
-    font-size: 1.1rem;
+    font-size: 1.15rem;
     margin-bottom: 0px;
     text-align: center;
     width: 100%;
 }
 
+/* Forces script text to follow the beautiful gold scheme */
 .italic-serif {
     font-family: 'Playfair Display', serif;
     font-style: italic;
@@ -669,7 +680,7 @@ body {
 }
 
 /* ==========================================
-   LOCKED RIGID TIMELINE GRID
+    LOCKED RIGID TIMELINE GRID
    ========================================== */
 .timeline-center-wrapper {
     position: relative;
@@ -686,7 +697,7 @@ body {
     top: 0;
     bottom: 0;
     width: 1px;
-    background-color: rgba(74, 74, 74, 0.2);
+    background-color: var(--line-gray); /* Uses the gold-tinted line mix */
     transform: translateX(-50%);
     z-index: 1;
 }
@@ -699,18 +710,22 @@ body {
     width: 100%;
     position: relative;
     z-index: 2;
-    margin-bottom: 45px;
+    margin-bottom: 50px;
+}
+.timeline-moment-row:last-child {
+    margin-bottom: 0;
 }
 
 /* ==========================================
-   STRICT WIDTH COLUMN GRID MAPS
+    STRICT WIDTH COLUMN GRID MAPS
    ========================================== */
 .col-time {
     width: 40%;
     font-family: 'Playfair Display', serif;
     font-style: italic;
-    font-size: 1.15rem;
-    color: var(--luxury-gold);
+    font-size: 1.25rem; /* Upgraded sizing slightly for editorial elegance */
+    font-weight: 500;
+    color: var(--luxury-gold); /* Gold unified color mapping */
     box-sizing: border-box;
 }
 
@@ -728,7 +743,7 @@ body {
 }
 
 /* ==========================================
-   ALIGNMENT ASSIGNMENT CONTROLS
+    ALIGNMENT ASSIGNMENT CONTROLS
    ========================================== */
 
 /* Rows where descriptive text lands on the right side */
@@ -737,10 +752,10 @@ body {
 }
 .right-side .col-time {
     text-align: right;
-    padding-right: 12px;
+    padding-right: 16px;
 }
 .right-side .col-details {
-    padding-left: 12px;
+    padding-left: 16px;
 }
 
 /* Rows where descriptive text lands on the left side */
@@ -749,55 +764,65 @@ body {
 }
 .left-side .col-time {
     text-align: left;
-    padding-left: 12px;
+    padding-left: 16px;
 }
 .left-side .col-details {
-    padding-right: 12px;
+    padding-right: 16px;
 }
 
 /* ==========================================
-   INNER COMPONENTS GRAPHICS
+    INNER COMPONENTS GRAPHICS
    ========================================== */
 .node-icon {
-    width: 40px;
-    height: 40px;
+    width: 60px;
+    height: 60px;
     background-color: #FFFFFF;
     border-radius: 50%;
     display: flex;
     justify-content: center;
     align-items: center;
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.05);
+    box-shadow: 0 4px 15px rgba(197, 168, 128, 0.12); /* Soft ambient gold glow drop shadow */
     color: var(--luxury-gold);
-    font-size: 0.9rem;
-    border: 1px solid rgba(197, 168, 128, 0.12);
+    font-size: 2.0rem; /*Change the icon size*/
+    border: 1px solid rgba(197, 168, 128, 0.2);
     flex-shrink: 0; /* Prevents icons from turning into ovals on narrow screens */
+    transition: transform 0.4s ease;
+}
+
+/* Elegant little zoom effect when your guests hover on computer screens */
+.timeline-moment-row:hover .node-icon {
+    transform: scale(1.1);
+    border-color: var(--luxury-gold);
 }
 
 .moment-title-script {
     font-family: 'Playfair Display', serif;
     font-style: italic;
-    font-size: 1.15rem;
+    font-size: 1.25rem;
     font-weight: 400;
-    margin: 0 0 3px 0;
-    color: var(--text-dark);
+    margin: 0 0 4px 0;
+    color: var(--luxury-gold); /* 💡 Linked to luxury gold to perfectly match the time column */
     line-height: 1.2;
 }
 
 .moment-description {
-    font-size: 0.75rem;
-    line-height: 1.4;
-    color: var(--muted-gray);
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.78rem;
+    line-height: 1.5;
+    color: var(--muted-editorial-gray); /* Balanced readable text tone */
     margin: 0;
+    font-weight: 400;
+    letter-spacing: 0.2px;
 }
 
 /* ==========================================
-   PREMIUM FADE ANIMATION ENGINES
+    PREMIUM FADE ANIMATION ENGINES
    ========================================== */
 .animate-on-scroll {
     opacity: 0;
-    transform: translateY(25px);
-    transition: opacity 1s cubic-bezier(0.22, 1, 0.36, 1), 
-                transform 1s cubic-bezier(0.22, 1, 0.36, 1);
+    transform: translateY(20px);
+    transition: opacity 1.2s cubic-bezier(0.215, 0.61, 0.355, 1), 
+                transform 1.2s cubic-bezier(0.215, 0.61, 0.355, 1);
 }
 
 .animate-on-scroll.elements-visible {
