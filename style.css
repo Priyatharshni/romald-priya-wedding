@@ -75,7 +75,7 @@ h1, h2, h3 {
 #bow-tie-click-area {
     position: absolute;
     /* Precise coordinates to match the bow tie area in the curtain image */
-    top: 55%; 
+    top: 35%; 
     left: 10%;
     width: 80%;
     height: 85%;
